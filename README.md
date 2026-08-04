@@ -7,6 +7,8 @@
 
 One skill that audits and produces publication-grade typography for blogs, websites, docs, slides, résumés, and data tables — distilled from Matthew Butterick's *Practical Typography*. It carries an ordered audit procedure with severity tiers, per-role ranges (body text rules are not display rules are not slide rules), graded font verdicts, and named presets for when your taste and the benchmark disagree.
 
+![Magazine-style cover: TYPOGRAPHY masthead, cover line NO-AI-SLOP, and stacked cover lines describing the skill.](assets/social-preview.png)
+
 ---
 
 ## The demo
@@ -78,7 +80,7 @@ npx skills add danium/practicaltypography
 
 | Situation | Where the skill takes it |
 |---|---|
-| "This page/deck looks unprofessional" | Six-step audit, findings ranked `[MAJOR|MINOR]`, corrected values, top-3 fixes |
+| "This page/deck looks unprofessional" | Six-step audit, findings ranked `[MAJOR\|MINOR]`, corrected values, top-3 fixes |
 | "Set up typography for my blog / docs site" | Body contract + supporting-elements table (code, tables, captions, nav, callouts) |
 | "Make it airy like Medium, not like a book" | Preference protocol: intent governs, reference beats quoted number, named presets (Bookish · Airy modern web · Compact docs) |
 | "Style my conference slides" | Slide role: size calibration, pure-black/gray contrast rules, consistent sizes, cut words not points |
