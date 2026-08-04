@@ -1,0 +1,6 @@
+{
+  "name": "practicaltypography",
+  "description": "A typography skill that audits and produces publication-quality text for blogs, docs, slides, and any content — distilled from Butterick's Practical Typography.",
+  "version": "1.0.0",
+  "author": { "name": "danium" }
+}

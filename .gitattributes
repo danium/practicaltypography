@@ -1,0 +1,11 @@
+# Store all text as LF in the repository, regardless of contributor platform.
+* text=auto
+
+# Skills are copied verbatim onto Linux and macOS by the installers, so the
+# files that ship must check out as LF everywhere.
+*.md text eol=lf
+*.json text eol=lf
+
+# Binary assets — never filtered, never diffed as text.
+*.jpg -text
+*.png -text
