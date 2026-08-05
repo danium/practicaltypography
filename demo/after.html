@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Your Espresso Tastes Bitter — A Troubleshooting Guide</title>
+<style>
+  :root {
+    --bg: #f7f3ee;
+    --card: #fffdfa;
+    --ink: #2b2118;
+    --ink-soft: #5c4d3f;
+    --accent: #a9713e;
+    --accent-dark: #7d5127;
+    --crema: #e8d9c5;
+    --rule: #e3d7c8;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    /* Charter first: A-list serif that holds up on screen; Georgia demoted to fallback */
+    font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    font-size: 18px;        /* body contract: 15-25px */
+    line-height: 1.4;       /* body contract: 1.2-1.45, not the web-default 1.7 */
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .site-header {
+    background: var(--ink);
+    color: var(--crema);
+    padding: 1rem 1.5rem;
+  }
+
+  .site-header .inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .site-title {
+    font-size: 1rem;
+    letter-spacing: 0.08em;   /* caps run, tracked within 0.05-0.12em */
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .site-title span {
+    color: var(--accent);
+  }
+
+  .site-tag {
+    font-size: 0.85rem;
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+  main {
+    max-width: 720px;         /* ~60ch of Charter at 18px inside the card */
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  article {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+    box-shadow: 0 8px 30px rgba(43, 33, 24, 0.07);
+  }
+
+  .kicker {
+    font-family: "Helvetica Neue", Seravek, "Gill Sans", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;    /* was 0.18em - past the 0.12em ceiling */
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2rem);  /* modest bump; hierarchy from weight and position */
+    line-height: 1.15;        /* display leading, tighter than body */
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .meta {
+    font-family: "Helvetica Neue", Seravek, "Gill Sans", sans-serif;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    /* no letterspacing: never track lowercase */
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--crema);  /* rules 0.5-1pt */
+    margin-bottom: 2rem;
+  }
+
+  .intro {
+    font-size: 1.1em;
+    color: var(--ink-soft);
+    /* roman, not italic: emphasis is for short bits, never a whole paragraph */
+    margin-bottom: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.25em;        /* scale ~1.25x body */
+    line-height: 1.2;
+    margin: 2.25rem 0 0.6rem; /* space above > below */
+    color: var(--accent-dark);
+    /* decorative bar below the heading removed: a rule belongs above a heading,
+       and white space alone separates better */
+  }
+
+  p {
+    margin-bottom: 0.85rem;   /* paragraph space 50-100% of point size */
+  }
+
+  blockquote {
+    margin: 1.5rem 0;
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    border-left: 3px solid var(--accent);
+    /* structural distinction only: no tint box, no italic run, no color shift */
+    color: var(--ink);
+  }
+
+  blockquote cite {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    font-style: normal;
+    font-family: "Helvetica Neue", Seravek, "Gill Sans", sans-serif;
+    color: var(--ink-soft);
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Helvetica Neue", Seravek, "Gill Sans", sans-serif;
+    font-size: 0.875em;       /* tables 0.85-0.9x body */
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;    /* caps run, tracked */
+    color: var(--ink-soft);
+    padding-bottom: 0.5rem;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 0.55rem 0.9rem 0.55rem 0;
+    border-bottom: 1px solid var(--rule);  /* thin rules; see the data, not the lines */
+  }
+
+  thead th {
+    font-weight: 700;
+    border-bottom: 1px solid var(--ink);
+    /* no dark band, no letterspaced lowercase, no zebra stripes */
+  }
+
+  td.ratio {
+    white-space: nowrap;
+    color: var(--accent-dark);
+  }
+
+  .closing {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    /* running text stays left-aligned; the inverse centered box is gone */
+  }
+
+  .closing p {
+    margin: 0;
+  }
+
+  .site-footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem 2.5rem;
+    text-align: center;       /* one short line: centering is fine */
+    font-family: "Helvetica Neue", Seravek, "Gill Sans", sans-serif;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <div class="site-title">The Daily <span>Pull</span></div>
+    <div class="site-tag">Notes from a home espresso bar</div>
+  </div>
+</header>
+
+<main>
+  <article>
+    <p class="kicker">Espresso &middot; Troubleshooting</p>
+    <h1>Why Your Espresso Tastes Bitter &mdash; A Troubleshooting Guide</h1>
+    <p class="meta">Filed under Brewing Basics &middot; 4 min read</p>
+
+    <p class="intro">Every home barista hits this wall eventually &hellip; you bought good beans, you followed the recipe, and the cup still tastes like burnt rubber. The good news: bitterness is almost always a extraction problem, and extraction is something you can control.</p>
+
+    <h2>What over-extraction actually is</h2>
+    <p>When hot water stays in contact with coffee too long, it keeps dissolving compounds after the sweet ones are gone. The result is that harsh, drying bitterness.</p>
+    <blockquote>
+      &ldquo;Bitterness in espresso is usually a symptom, not a sentence.&rdquo;
+      <cite>&mdash;&nbsp;James Hoffmann</cite>
+    </blockquote>
+
+    <h2>The three levers</h2>
+    <p>You have three levers: grind size, dose, and time. Coarser grind means faster flow and less extraction. A typical starting recipe is 18 grams in, 36 grams out, in 25&ndash;30 seconds. If your shot runs 35&ndash;40 seconds, grind coarser.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Brew ratios at a glance</caption>
+        <thead>
+          <tr>
+            <th scope="col">Style</th>
+            <th scope="col">Ratio</th>
+            <th scope="col">Character</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ristretto</td>
+            <td class="ratio">1:1&ndash;1:1.5</td>
+            <td>Intense and syrupy</td>
+          </tr>
+          <tr>
+            <td>Normale</td>
+            <td class="ratio">1:1.5&ndash;1:2.5</td>
+            <td>Balanced sweetness</td>
+          </tr>
+          <tr>
+            <td>Lungo</td>
+            <td class="ratio">1:2.5&ndash;1:4</td>
+            <td>Lighter and more bitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>When it's not the extraction</h2>
+    <p>Dark roasts are bitter by design &mdash; roasters char the sugars on purpose. If you brew a dark roast &ldquo;perfectly&rdquo; it will still taste roasty. Try a medium roast from a roaster like Onyx or Tim Wendelboe &copy; and compare.</p>
+
+    <div class="closing">
+      <p>Fix the grind first, then the ratio, then everything else. <strong>90% of bitter shots die at the grinder.</strong></p>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <p>Brewed with care. Tamp evenly, taste often.</p>
+</footer>
+
+</body>
+</html>

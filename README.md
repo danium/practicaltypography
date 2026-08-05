@@ -47,6 +47,25 @@ The vanilla answer isn't bad. It's *good* — and it missed the font entirely, r
 
 ---
 
+## Before / after
+
+A vanilla agent got one prompt — "build me a blog post page, style it nicely" — and produced [`demo/before.html`](demo/before.html), saved unretouched. The skill then audited it ([`demo/AUDIT.md`](demo/AUDIT.md), findings in its own reporting format) and produced [`demo/after.html`](demo/after.html) with the content untouched.
+
+<table>
+<tr>
+<th width="50%">Before — vanilla agent</th>
+<th width="50%">After — typography skill</th>
+</tr>
+<tr valign="top">
+<td><img src="assets/demo-before.png" alt="Vanilla agent blog page: 16px Georgia at line-height 1.7, italic intro paragraph, tinted italic blockquote, dark striped table header, centered inverse closing box."></td>
+<td><img src="assets/demo-after.png" alt="Same page after the skill: 18px Charter at line-height 1.4, roman intro, structural blockquote, quiet table with thin rules, left-aligned closing."></td>
+</tr>
+</table>
+
+The headline changes: 16px/1.7 Georgia became 18px/1.4 Charter, the dark striped table header became thin rules with tabular figures, the italic intro and tinted blockquote calmed down to structural distinction, and the centered inverse closing box became left-aligned text. Same content — and the page got *shorter* (1584px vs 1804px of scroll), because tighter leading recovers what the web-default 1.7 wastes. Good typography costs nothing in word count.
+
+---
+
 ## Install
 
 **Any agent (recommended):**

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Your Espresso Tastes Bitter — A Troubleshooting Guide</title>
+<style>
+  :root {
+    --bg: #f7f3ee;
+    --card: #fffdfa;
+    --ink: #2b2118;
+    --ink-soft: #5c4d3f;
+    --accent: #a9713e;
+    --accent-dark: #7d5127;
+    --crema: #e8d9c5;
+    --rule: #e3d7c8;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .site-header {
+    background: var(--ink);
+    color: var(--crema);
+    padding: 1rem 1.5rem;
+  }
+
+  .site-header .inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .site-title {
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .site-title span {
+    color: var(--accent);
+  }
+
+  .site-tag {
+    font-size: 0.85rem;
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  article {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+    box-shadow: 0 8px 30px rgba(43, 33, 24, 0.07);
+  }
+
+  .kicker {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-size: clamp(1.7rem, 4.5vw, 2.5rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .meta {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--crema);
+    margin-bottom: 2rem;
+  }
+
+  .intro {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    margin: 2.25rem 0 0.75rem;
+    color: var(--accent-dark);
+  }
+
+  h2::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin-top: 0.4rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    background: var(--crema);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--accent-dark);
+  }
+
+  blockquote cite {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    font-style: normal;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink-soft);
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.95rem;
+  }
+
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    padding-bottom: 0.5rem;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  thead th {
+    background: var(--ink);
+    color: var(--crema);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  tbody tr:nth-child(even) {
+    background: var(--bg);
+  }
+
+  td.ratio {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-dark);
+    font-weight: 600;
+  }
+
+  .closing {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background: var(--ink);
+    color: var(--crema);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .closing p {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .closing strong {
+    color: var(--accent);
+  }
+
+  .site-footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem 2.5rem;
+    text-align: center;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <div class="site-title">The Daily <span>Pull</span></div>
+    <div class="site-tag">Notes from a home espresso bar</div>
+  </div>
+</header>
+
+<main>
+  <article>
+    <p class="kicker">Espresso &middot; Troubleshooting</p>
+    <h1>Why Your Espresso Tastes Bitter &mdash; A Troubleshooting Guide</h1>
+    <p class="meta">Filed under Brewing Basics &middot; 4 min read</p>
+
+    <p class="intro">Every home barista hits this wall eventually... you bought good beans, you followed the recipe, and the cup still tastes like burnt rubber. The good news: bitterness is almost always a extraction problem, and extraction is something you can control.</p>
+
+    <h2>What over-extraction actually is</h2>
+    <p>When hot water stays in contact with coffee too long, it keeps dissolving compounds after the sweet ones are gone. The result is that harsh, drying bitterness.</p>
+    <blockquote>
+      &ldquo;Bitterness in espresso is usually a symptom, not a sentence.&rdquo;
+      <cite>&mdash; James Hoffmann</cite>
+    </blockquote>
+
+    <h2>The three levers</h2>
+    <p>You have three levers: grind size, dose, and time. Coarser grind means faster flow and less extraction. A typical starting recipe is 18 grams in, 36 grams out, in 25&ndash;30 seconds. If your shot runs 35&ndash;40 seconds, grind coarser.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Brew ratios at a glance</caption>
+        <thead>
+          <tr>
+            <th scope="col">Style</th>
+            <th scope="col">Ratio</th>
+            <th scope="col">Character</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ristretto</td>
+            <td class="ratio">1:1 &ndash; 1:1.5</td>
+            <td>Intense and syrupy</td>
+          </tr>
+          <tr>
+            <td>Normale</td>
+            <td class="ratio">1:1.5 &ndash; 1:2.5</td>
+            <td>Balanced sweetness</td>
+          </tr>
+          <tr>
+            <td>Lungo</td>
+            <td class="ratio">1:2.5 &ndash; 1:4</td>
+            <td>Lighter and more bitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>When it's not the extraction</h2>
+    <p>Dark roasts are bitter by design &mdash; roasters char the sugars on purpose. If you brew a dark roast &ldquo;perfectly&rdquo; it will still taste roasty. Try a medium roast from a roaster like Onyx or Tim Wendelboe &copy; and compare.</p>
+
+    <div class="closing">
+      <p>Fix the grind first, then the ratio, then everything else. <strong>90% of bitter shots die at the grinder.</strong></p>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <p>Brewed with care. Tamp evenly, taste often.</p>
+</footer>
+
+</body>
+</html>
